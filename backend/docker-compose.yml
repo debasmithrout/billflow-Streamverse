@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    container_name: billflow-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+psycopg://postgres:DEBU1234@host.docker.internal:5432/billflow_db
+      - CELERY_BROKER_URL=redis://host.docker.internal:6379/0
+      - CELERY_RESULT_BACKEND=redis://host.docker.internal:6379/0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - .:/app
+
+  celery_worker:
+    build: .
+    container_name: billflow-celery-worker
+    command: celery -A app.celery_worker.celery_app worker --loglevel=info
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+psycopg://postgres:DEBU1234@host.docker.internal:5432/billflow_db
+      - CELERY_BROKER_URL=redis://host.docker.internal:6379/0
+      - CELERY_RESULT_BACKEND=redis://host.docker.internal:6379/0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - .:/app
+
+  celery_beat:
+    build: .
+    container_name: billflow-celery-beat
+    command: celery -A app.celery_worker.celery_app beat --loglevel=info
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql+psycopg://postgres:DEBU1234@host.docker.internal:5432/billflow_db
+      - CELERY_BROKER_URL=redis://host.docker.internal:6379/0
+      - CELERY_RESULT_BACKEND=redis://host.docker.internal:6379/0
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - .:/app
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: billflow-postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=DEBU1234
+      - POSTGRES_DB=billflow_db
+    ports:
+      - "127.0.0.1:5435:5432"
+
+  redis:
+    image: redis:7-alpine
+    container_name: billflow-redis
+    ports:
+      - "127.0.0.1:6381:6379"

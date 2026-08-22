@@ -1,0 +1,219 @@
+Line 2: import { useEffect, useState } from "rea | Opens: 1, Closes: 1 | Depth 0 -> 0
+Line 3: import { motion, AnimatePresence } from  | Opens: 1, Closes: 1 | Depth 0 -> 0
+Line 4: import { | Opens: 1, Closes: 0 | Depth 0 -> 1
+Line 6: } from "../../services/adminService"; | Opens: 0, Closes: 1 | Depth 1 -> 0
+Line 7: import { formatCurrency } from "../../ut | Opens: 1, Closes: 1 | Depth 0 -> 0
+Line 13: import { AdminStatsSkeleton } from "../. | Opens: 1, Closes: 1 | Depth 0 -> 0
+Line 16: import { | Opens: 1, Closes: 0 | Depth 0 -> 1
+Line 21: } from "lucide-react"; | Opens: 0, Closes: 1 | Depth 1 -> 0
+Line 24: function BusinessEventTimeline({ logs =  | Opens: 2, Closes: 1 | Depth 0 -> 1
+Line 25: const getEventStyle = (action = "") => { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 27: if (a.includes("subscribe") || a.include | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 28: if (a.includes("upgrade"))               | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 29: if (a.includes("downgrade"))             | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 30: if (a.includes("pay") && !a.includes("fa | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 31: if (a.includes("fail") || a.includes("er | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 32: if (a.includes("refund"))                | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 33: if (a.includes("invoice"))               | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 34: if (a.includes("trial"))                 | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 35: return { icon: Activity, color: "text-zi | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 36: }; | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 44: {logs.map((log, idx) => { | Opens: 2, Closes: 0 | Depth 1 -> 3
+Line 45: const { icon: Icon, color, bg } = getEve | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 48: key={log.id || idx} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 49: initial={{ opacity: 0, x: -10 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 50: animate={{ opacity: 1, x: 0 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 51: transition={{ delay: idx * 0.04 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 54: <div className={`w-8 h-8 rounded-xl ${bg | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 55: <Icon size={14} className={color} /> | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 58: <span className="text-white font-bold bl | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 59: <span className="text-[10px] text-zinc-5 | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 61: {log.timestamp ? new Date(log.timestamp) | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 66: })} | Opens: 0, Closes: 2 | Depth 3 -> 1
+Line 69: } | Opens: 0, Closes: 1 | Depth 1 -> 0
+Line 72: function TopPlansLeaderboard({ planDist  | Opens: 2, Closes: 1 | Depth 0 -> 1
+Line 79: {planDist.map((item, i) => { | Opens: 2, Closes: 0 | Depth 1 -> 3
+Line 87: key={i} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 88: initial={{ opacity: 0, x: 20 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 89: animate={{ opacity: 1, x: 0 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 90: transition={{ delay: i * 0.08 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 91: whileHover={{ x: 4 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 96: <span className="text-base">{MEDALS[i] | | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 98: <span className="text-white font-bold te | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 99: {planInfo && ( | Opens: 1, Closes: 0 | Depth 3 -> 4
+Line 100: <span className="text-[10px] text-zinc-5 | Opens: 1, Closes: 1 | Depth 4 -> 4
+Line 101: )} | Opens: 0, Closes: 1 | Depth 4 -> 3
+Line 105: <span className="text-white font-black f | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 106: <span className="text-[10px] text-zinc-4 | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 111: initial={{ width: 0 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 112: animate={{ width: `${pct}%` }} | Opens: 3, Closes: 3 | Depth 3 -> 3
+Line 113: transition={{ delay: 0.3 + i * 0.1, dura | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 115: style={{ background: color }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 119: <span>{pct}% of subscribers</span> | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 120: <span className="text-green-400">{pct >  | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 124: })} | Opens: 0, Closes: 2 | Depth 3 -> 1
+Line 127: } | Opens: 0, Closes: 1 | Depth 1 -> 0
+Line 130: function BusinessInsightsPanel({ analyti | Opens: 2, Closes: 1 | Depth 0 -> 1
+Line 133: const stats         = analytics?.stats | | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 134: const paymentsChart = analytics?.payment | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 142: : { month: "N/A", revenue: 0 }; | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 145: : { name: "N/A", count: 0 }; | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 154: { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 156: value: `${bestMonth.month}  ${formatCur | Opens: 2, Closes: 2 | Depth 2 -> 2
+Line 159: }, | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 160: { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 162: value: `${topPlan.name} (${topPlan.count | Opens: 2, Closes: 2 | Depth 2 -> 2
+Line 165: }, | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 166: { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 171: }, | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 172: { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 177: }, | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 178: { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 180: value: `${successRate}%`, | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 183: }, | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 184: { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 189: }, | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 190: { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 192: value: `${((stats.activeCount / (stats.c | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 195: }, | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 196: { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 201: } | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 206: {insights.map((ins, i) => { | Opens: 2, Closes: 0 | Depth 1 -> 3
+Line 210: key={i} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 211: initial={{ opacity: 0, y: 12 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 212: animate={{ opacity: 1, y: 0 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 213: transition={{ delay: i * 0.05 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 216: <div className={`w-8 h-8 rounded-xl ${in | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 217: <Icon size={14} className={ins.color} /> | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 220: <span className="text-[9px] uppercase te | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 221: <span className="text-white font-bold te | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 222: <span className="text-[10px] text-zinc-6 | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 226: })} | Opens: 0, Closes: 2 | Depth 3 -> 1
+Line 229: } | Opens: 0, Closes: 1 | Depth 1 -> 0
+Line 232: function MonthlyCollectionsChart({ data  | Opens: 2, Closes: 1 | Depth 0 -> 1
+Line 242: {data.map((d, i) => { | Opens: 2, Closes: 0 | Depth 1 -> 3
+Line 245: <div key={i} className="flex-1 flex flex | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 247: {formatCurrency(d.revenue)} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 250: initial={{ height: 0 }} | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 251: animate={{ height: `${pct}%` }} | Opens: 3, Closes: 3 | Depth 3 -> 3
+Line 252: transition={{ delay: 0.1 + i * 0.06, dur | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 255: <span className="text-[9px] text-zinc-50 | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 258: })} | Opens: 0, Closes: 2 | Depth 3 -> 1
+Line 263: <span>{Math.round(maxVal / 2).toLocaleS | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 264: <span>{maxVal.toLocaleString()} max</sp | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 268: } | Opens: 0, Closes: 1 | Depth 1 -> 0
+Line 271: export default function Analytics() { | Opens: 1, Closes: 0 | Depth 0 -> 1
+Line 272: const { showToast } = useToast(); | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 284: const [customDates,  setCustomDates]  =  | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 286: useEffect(() => { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 287: const fetchAll = async () => { | Opens: 1, Closes: 0 | Depth 2 -> 3
+Line 288: try { | Opens: 1, Closes: 0 | Depth 3 -> 4
+Line 293: getPlans().catch(() => ({ plans: [] })), | Opens: 1, Closes: 1 | Depth 4 -> 4
+Line 294: getAuditLogs({ limit: 8 }).catch(() => ( | Opens: 2, Closes: 2 | Depth 4 -> 4
+Line 300: } catch (err) { | Opens: 1, Closes: 1 | Depth 4 -> 4
+Line 303: } finally { | Opens: 1, Closes: 1 | Depth 4 -> 4
+Line 305: } | Opens: 0, Closes: 1 | Depth 4 -> 3
+Line 306: }; | Opens: 0, Closes: 1 | Depth 3 -> 2
+Line 308: }, [refreshCount]); | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 310: const handleRefresh = () => { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 313: }; | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 316: const handleExportCSV = () => { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 318: const { stats, planDistribution, payment | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 335: ["Success Rate (%)", `${paymentsChart.su | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 338: const csv = rows.map(r => r.map(c => `"$ | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 339: const blob = new Blob([csv], { type: "te | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 343: link.download = `billflow_analytics_${Da | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 346: }; | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 349: const handleExportJSON = () => { | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 351: const blob = new Blob([JSON.stringify({  | Opens: 2, Closes: 2 | Depth 2 -> 2
+Line 355: link.download = `billflow_analytics_${Da | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 358: }; | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 363: {/*  1. HERO HEADER  */} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 372: <BarChart2 size={22} className="text-[#8 | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 381: onClick={handleExportCSV} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 382: disabled={loading || !analytics} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 384: style={{ fontSize: "12px", padding: "7px | Opens: 2, Closes: 2 | Depth 1 -> 1
+Line 386: <Download size={13} /> | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 391: onClick={handleExportJSON} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 392: disabled={loading || !analytics} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 394: style={{ fontSize: "12px", padding: "7px | Opens: 2, Closes: 2 | Depth 1 -> 1
+Line 396: <FileDown size={13} /> | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 401: onClick={handleRefresh} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 403: style={{ fontSize: "12px", padding: "7px | Opens: 2, Closes: 2 | Depth 1 -> 1
+Line 405: <RefreshCw size={13} className={loading  | Opens: 2, Closes: 2 | Depth 1 -> 1
+Line 409: {/*  TABS STRIP  */} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 411: {[ | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 412: { key: "revenue",      label: "Revenue A | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 413: { key: "tax",          label: "Tax Analy | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 414: { key: "subscription", label: "Subscript | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 415: { key: "customer",     label: "Customer  | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 416: ].map(tab => { | Opens: 1, Closes: 0 | Depth 2 -> 3
+Line 421: key={tab.key} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 423: onClick={() => setActiveTab(tab.key)} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 424: className={`flex items-center gap-1.5 px | Opens: 2, Closes: 0 | Depth 3 -> 5
+Line 428: }`} | Opens: 0, Closes: 2 | Depth 5 -> 3
+Line 430: <Icon size={13} /> | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 431: {tab.label} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 434: })} | Opens: 0, Closes: 2 | Depth 3 -> 1
+Line 437: {/*  2. FILTER BAR  */} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 442: value={dateRange} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 443: onChange={e => setDateRange(e.target.val | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 446: {["All Time", "Today", "Last 7 Days", "L | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 447: <option key={d} value={d}>{d}</option> | Opens: 3, Closes: 3 | Depth 2 -> 2
+Line 448: ))} | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 452: {dateRange === "Custom Range" && ( | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 458: value={customDates.start} | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 459: onChange={e => setCustomDates(prev => ({ | Opens: 2, Closes: 2 | Depth 2 -> 2
+Line 467: value={customDates.end} | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 468: onChange={e => setCustomDates(prev => ({ | Opens: 2, Closes: 2 | Depth 2 -> 2
+Line 473: )} | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 475: {activeTab !== "tax" && ( | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 480: value={planFilter} | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 481: onChange={e => setPlanFilter(e.target.va | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 485: {plans.map(p => <option key={p.id} value | Opens: 4, Closes: 4 | Depth 2 -> 2
+Line 492: {["All Cycles","Monthly","Annual"].map(c | Opens: 3, Closes: 3 | Depth 2 -> 2
+Line 499: {["All","Paid","Failed","Refunded"].map( | Opens: 3, Closes: 3 | Depth 2 -> 2
+Line 503: )} | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 508: onClick={() => { setDateRange("All Time" | Opens: 2, Closes: 2 | Depth 1 -> 1
+Line 510: style={{ fontSize: "11px", padding: "6px | Opens: 2, Closes: 2 | Depth 1 -> 1
+Line 517: {/*  3. LOADING / DATA  */} | Opens: 1, Closes: 1 | Depth 1 -> 1
+Line 518: {loading ? ( | Opens: 1, Closes: 0 | Depth 1 -> 2
+Line 522: {[...Array(4)].map((_, i) => ( | Opens: 1, Closes: 0 | Depth 2 -> 3
+Line 523: <div key={i} className="h-64 bg-zinc-900 | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 524: ))} | Opens: 0, Closes: 1 | Depth 3 -> 2
+Line 530: <BarChart2 size={36} className="text-[#8 | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 538: onClick={handleRefresh} | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 540: style={{ fontSize: "13px", padding: "9px | Opens: 2, Closes: 2 | Depth 2 -> 2
+Line 542: <RefreshCw size={14} /> | Opens: 1, Closes: 1 | Depth 2 -> 2
+Line 548: {activeTab === "revenue" && ( | Opens: 1, Closes: 0 | Depth 2 -> 3
+Line 550: {/*  4. KPI CARDS  */} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 551: <AnalyticsSummaryCard stats={analytics.s | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 553: {/*  5. MAIN CHARTS GRID (row 1)  */ | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 556: <RevenueChartCard data={analytics.revenu | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 560: {/*  6. CHARTS ROW 2  */} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 562: <MonthlyCollectionsChart data={analytics | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 563: <PaymentSuccessChart chartData={analytic | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 566: {/*  7. BOTTOM PANELS (Top Plans + Bus | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 568: {/* Top Plans Leaderboard */} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 573: <Award size={15} className="text-amber-4 | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 577: <TopPlansLeaderboard planDist={analytics | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 580: {/* Business Insights */} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 585: <Sparkles size={15} className="text-[#8B | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 589: <BusinessInsightsPanel analytics={analyt | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 593: )} | Opens: 0, Closes: 1 | Depth 3 -> 2
+Line 595: {activeTab === "tax" && ( | Opens: 1, Closes: 0 | Depth 2 -> 3
+Line 596: <TaxAnalytics dateRangeFilter={dateRange | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 597: )} | Opens: 0, Closes: 1 | Depth 3 -> 2
+Line 599: {activeTab === "subscription" && ( | Opens: 1, Closes: 0 | Depth 2 -> 3
+Line 601: <SubscriptionChart data={analytics.planD | Opens: 2, Closes: 2 | Depth 3 -> 3
+Line 602: <CustomerGrowthChart trends={analytics.t | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 604: )} | Opens: 0, Closes: 1 | Depth 3 -> 2
+Line 606: {activeTab === "customer" && ( | Opens: 1, Closes: 0 | Depth 2 -> 3
+Line 609: <CustomerGrowthChart trends={analytics.t | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 611: {/* Recent Business Events Timeline */} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 616: <Activity size={15} className="text-gree | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 621: <BusinessEventTimeline logs={recentLogs} | Opens: 1, Closes: 1 | Depth 3 -> 3
+Line 625: )} | Opens: 0, Closes: 1 | Depth 3 -> 2
+Line 627: )} | Opens: 0, Closes: 1 | Depth 2 -> 1
+Line 631: } | Opens: 0, Closes: 1 | Depth 1 -> 0
+Final depth: 0

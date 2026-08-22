@@ -1,0 +1,307 @@
+import React, { createContext, useContext, useState, useEffect } from "react";
+
+export const LANGUAGES = [
+  { code: "en", label: "English" },
+  { code: "hi", label: "हिन्दी" },
+  { code: "bn", label: "বাংলা" },
+  { code: "ta", label: "தமிழ்" },
+  { code: "te", label: "తెలుగు" },
+  { code: "kn", label: "ಕನ್ನಡ" },
+  { code: "ml", label: "മലയാളം" },
+  { code: "gu", label: "ગુજરાતી" },
+  { code: "pa", label: "ਪੰਜਾਬੀ" },
+  { code: "mr", label: "मਰਾਠੀ" }
+];
+
+const LanguageContext = createContext(null);
+
+export const useLanguage = () => useContext(LanguageContext);
+
+// Pre-packaged english translations as a fallback / instant load to prevent any flashing
+const enFallback = {
+  "navbar": {
+    "home": "Home",
+    "features": "Features",
+    "originals": "Originals",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "signIn": "Sign In",
+    "startFreeTrial": "Start Free Trial"
+  },
+  "hero": {
+    "badge": "#1 Entertainment Platform",
+    "title_part1": "Stream",
+    "title_part2": "Everything.",
+    "title_part3": "Anywhere.",
+    "title_part4": "Time.",
+    "subtitle": "Movies, Anime, Web Series, Sports & Live TV — all on one platform. Start your 7-day free trial. No credit card needed.",
+    "ctaTrial": "Start 7-Day Free Trial",
+    "ctaExplore": "Explore Content",
+    "emailPlaceholder": "Enter your email to get started...",
+    "getStarted": "Get Started",
+    "badgeNoCard": "No Credit Card Required",
+    "badgeAccess": "Instant Access",
+    "badgeCancel": "Cancel Anytime",
+    "liveLabel": "Live",
+    "liveTitle": "Solo Leveling S2",
+    "liveSubtitle": "Anime · EP 8",
+    "statViewers": "Viewers",
+    "statTitles": "Titles",
+    "statRating": "Rating"
+  },
+  "trending": {
+    "badge": "This Week",
+    "title": "Trending Now",
+    "anime": "Anime",
+    "action": "Action",
+    "scifi": "Sci-Fi",
+    "drama": "Drama",
+    "fantasy": "Fantasy",
+    "hollywood": "Hollywood",
+    "bollywood": "Bollywood",
+    "kdrama": "K-Drama",
+    "webseries": "Web Series",
+    "sports": "Sports",
+    "music": "Music",
+    "liveevents": "Live Events",
+    "documentaries": "Documentaries",
+    "kids": "Kids"
+  },
+  "universe": {
+    "badge": "All Genres",
+    "title_part1": "Explore the ",
+    "title_part2": "Content Universe",
+    "title_part3": "",
+    "subtitle": "Dive into a world of entertainment spanning every genre and language.",
+    "titlesSuffix": "titles"
+  },
+  "originals": {
+    "badge": "● StreamVerse Originals",
+    "title_part1": "Stories Only ",
+    "title_part2": "We Tell",
+    "subtitle": "Exclusive originals produced by StreamVerse — available nowhere else.",
+    "badgeText": "● STREAMVERSE ORIGINAL",
+    "watchNow": "Watch Now"
+  },
+  "devices": {
+    "badge": "Multi-Device",
+    "title_part1": "Watch On ",
+    "title_part2": "Every Device",
+    "step1": "Start on your phone.",
+    "step2": "Continue on your TV.",
+    "step3": "Finish on your laptop.",
+    "feature_4kStreaming": "4K Streaming",
+    "feature_offlineDownloads": "Offline Downloads",
+    "feature_audioSurround": "5.1 Surround",
+    "feature_hdrSupport": "HDR Support",
+    "label_mobile": "Mobile",
+    "sub_mobile": "iOS & Android",
+    "label_tablet": "Tablet",
+    "sub_tablet": "iPad & Android",
+    "label_laptop": "Laptop",
+    "sub_laptop": "Mac & Windows",
+    "label_smarttv": "Smart TV",
+    "sub_smarttv": "Samsung & LG"
+  },
+  "services": {
+    "badge": "Why Choose Us",
+    "title_part1": "Why Users ",
+    "title_part2": "Love Us",
+    "subtitle": "We provide the best streaming experience with premium features designed just for you.",
+    "feature1_title": "4K & HDR Streaming",
+    "feature1_desc": "Ultra HD content with HDR and Dolby Atmos audio on supported displays.",
+    "feature2_title": "Offline Downloads",
+    "feature2_desc": "Download your favourite shows and watch anywhere, even without internet.",
+    "feature3_title": "Multi-Device Access",
+    "feature3_desc": "Stream simultaneously on phones, tablets, laptops and smart TVs.",
+    "feature4_title": "Family Profiles",
+    "feature4_desc": "Create up to 6 individual profiles, each with personalised recommendations.",
+    "feature5_title": "Parental Controls",
+    "feature5_desc": "Set content ratings and screen-time limits for younger household members.",
+    "feature6_title": "AI Recommendations",
+    "feature6_desc": "Smart suggestions that learn your taste and surface content you'll love."
+  },
+  "features": {
+    "badge": "Billing Engine",
+    "title_part1": "Smart ",
+    "title_part2": "Subscription",
+    "title_part3": " Experience",
+    "subtitle": "Powered by StreamVerse's production-grade billing engine — auto renewals, prorated upgrades, instant invoices and full payment history.",
+    "feature1_title": "Auto Renewals",
+    "feature1_desc": "Subscriptions renew automatically. You stay in control with one-click toggle from your dashboard.",
+    "feature2_title": "Instant Upgrades",
+    "feature2_desc": "Upgrade your plan anytime. Prorated credits are calculated automatically for the current billing cycle.",
+    "feature3_title": "Plan Downgrades",
+    "feature3_desc": "Downgrade at any time. The change takes effect at your next billing cycle, no access lost early.",
+    "feature4_title": "Instant Invoices",
+    "feature4_desc": "Tax-compliant PDF invoices are generated automatically after every payment and sent to your email.",
+    "feature5_title": "Email Receipts",
+    "feature5_desc": "Automated email receipts for every transaction. Welcome emails, renewal reminders and trial confirmations.",
+    "feature6_title": "Payment History",
+    "feature6_desc": "View every transaction, invoice and receipt from your account dashboard. Full audit trail included.",
+    "mock_title": "Subscription Management",
+    "mock_active": "ACTIVE",
+    "mock_plan": "Current Plan",
+    "mock_plan_val": "Premium Plan",
+    "mock_cycle": "Billing Cycle",
+    "mock_cycle_val": "Monthly",
+    "mock_trial": "Trial Status",
+    "mock_trial_val": "7-Day Free Trial",
+    "mock_renew": "Auto Renewal",
+    "mock_renew_val": "Enabled",
+    "mock_footer": "Invoice generated · Emailed automatically"
+  },
+  "stats": {
+    "badge": "Platform Growth",
+    "title_part1": "Our Metrics ",
+    "title_part2": "Speak",
+    "subtitle": "Scale that guarantees high availability, rapid response, and uninterrupted viewing for millions of concurrent users.",
+    "stat1_label": "Active Viewers",
+    "stat2_label": "Premium Titles",
+    "stat3_label": "Supported Regions",
+    "stat4_label": "Server Uplink Speed"
+  },
+  "pricing": {
+    "badge": "Pricing Plans",
+    "title_part1": "Choose Your ",
+    "title_part2": "Plan",
+    "subtitle": "Unlock unlimited access to all features. Start with a 7-day free trial, cancel anytime.",
+    "perMonth": "month",
+    "choose": "Choose Plan",
+    "freeTrial": "7-day Free Trial",
+    "cancelAnytime": "Cancel Anytime",
+    "popular": "Most Popular"
+  },
+  "testimonials": {
+    "badge": "Reviews",
+    "title_part1": "What Our ",
+    "title_part2": "Streamers Say",
+    "subtitle": "Discover why millions of users trust StreamVerse for their daily entertainment dose.",
+    "author1_name": "Priya Sharma",
+    "author1_role": "Anime & K-Drama Fan",
+    "author1_review": "StreamVerse has the best anime library I've ever seen. The 4K quality is stunning and the subscription billing is so transparent — invoices arrive instantly after every payment.",
+    "author2_name": "Rahul Mehta",
+    "author2_role": "Hollywood Blockbuster Fan",
+    "author2_review": "I upgraded from Basic to Premium mid-month and the prorated credit was calculated automatically. The billing team clearly built something impressive under the hood.",
+    "author3_name": "Sneha Agarwal",
+    "author3_role": "Bollywood & Web Series Fan",
+    "author3_review": "The family profiles feature is a game-changer. Each member gets their own recommendations and I can set parental controls for my kids. Absolutely seamless experience."
+  },
+  "faq": {
+    "badge": "Questions & Answers",
+    "title_part1": "Frequently Asked ",
+    "title_part2": "Questions",
+    "subtitle": "Everything you need to know before you start streaming.",
+    "q1": "What is StreamVerse?",
+    "a1": "StreamVerse is a premium OTT streaming platform offering unlimited access to movies, anime, web series, K-Drama, sports and live events. It is powered by a production-grade billing engine for seamless subscription management.",
+    "q2": "How does the 7-day free trial work?",
+    "a2": "Start a 7-day free trial on any plan. You get full premium access during the trial. You are only charged after the trial ends. Cancel anytime before the trial expires — no questions asked.",
+    "q3": "Can I cancel my subscription anytime?",
+    "a3": "Yes. Cancel from your dashboard at any time. There are zero cancellation fees, no contract lock-ins, and no hidden charges. You retain access until the end of your current billing cycle.",
+    "q4": "How do plan upgrades and downgrades work?",
+    "a4": "Upgrades take effect immediately. Prorated credits for your remaining current cycle are applied automatically. Downgrades take effect at the start of your next billing cycle — no access is lost early.",
+    "q5": "Which payment methods are accepted?",
+    "a5": "We accept major credit and debit cards (Visa, Mastercard, Amex), UPI, net banking and digital wallets. All transactions are encrypted and processed securely.",
+    "q6": "Will I receive invoices for my payments?",
+    "a6": "Yes. Tax-compliant PDF invoices are generated automatically after every payment — including trial activations, renewals and plan changes. They are emailed instantly and accessible from your account history.",
+    "q7": "How many screens can I watch on simultaneously?",
+    "a7": "This depends on your plan. Basic supports 1 screen, Standard supports 2, Premium supports 4 screens, and the Family plan supports up to 6 simultaneous screens."
+  },
+  "footer": {
+    "copyright": "© 2026 StreamVerse. All rights reserved.",
+    "col_explore": "Explore",
+    "col_platform": "Platform",
+    "col_support": "Support",
+    "col_legal": "Legal",
+    "link_movies": "Movies",
+    "link_anime": "Anime",
+    "link_kdrama": "K-Drama",
+    "link_webseries": "Web Series",
+    "link_sports": "Sports & Live",
+    "link_features": "Features",
+    "link_pricing": "Pricing Plans",
+    "link_trial": "Free Trial",
+    "link_downloads": "Downloads",
+    "link_help": "Help Center",
+    "link_faq": "FAQ",
+    "link_contact": "Contact Us",
+    "link_account": "Account",
+    "link_privacy": "Privacy Policy",
+    "link_terms": "Terms of Service",
+    "link_cookie": "Cookie Policy",
+    "link_refund": "Refund Policy"
+  },
+  "pricingError": {
+    "unavailable": "Plans are temporarily unavailable.",
+    "message": "We encountered a problem retrieving the dynamic pricing tiers from the server. Please verify your connection or click below to retry.",
+    "retry": "Retry Loading",
+    "choosePlan": "Choose Plan"
+  }
+};
+
+export function LanguageProvider({ children }) {
+  const [langCode, setLangCode] = useState(() => {
+    return localStorage.getItem("landing_lang") || "en";
+  });
+  const [translations, setTranslations] = useState(langCode === "en" ? enFallback : {});
+
+  const loadTranslations = async (code) => {
+    if (code === "en") {
+      setTranslations(enFallback);
+      return;
+    }
+    try {
+      const response = await fetch(`/locales/${code}.json`);
+      if (response.ok) {
+        const json = await response.json();
+        setTranslations(json);
+      } else {
+        console.error(`Failed to load locales for ${code}`);
+        setTranslations(enFallback);
+      }
+    } catch (err) {
+      console.error(err);
+      setTranslations(enFallback);
+    }
+  };
+
+  useEffect(() => {
+    loadTranslations(langCode);
+    // RTL compatibility
+    document.documentElement.dir = langCode === "ar" ? "rtl" : "ltr";
+  }, [langCode]);
+
+  const changeLanguage = (code) => {
+    setLangCode(code);
+    localStorage.setItem("landing_lang", code);
+  };
+
+  // Helper to resolve dot-nested keys like "hero.title"
+  const t = (key) => {
+    const keys = key.split(".");
+    let val = translations;
+    for (const k of keys) {
+      if (val && typeof val === "object" && k in val) {
+        val = val[k];
+      } else {
+        // Fallback to English nested path
+        let fallbackVal = enFallback;
+        for (const fk of keys) {
+          if (fallbackVal && typeof fallbackVal === "object" && fk in fallbackVal) {
+            fallbackVal = fallbackVal[fk];
+          } else {
+            return key; // If fallback fails too, return the key itself
+          }
+        }
+        return fallbackVal;
+      }
+    }
+    return typeof val === "string" ? val : key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ langCode, changeLanguage, t, dir: langCode === "ar" ? "rtl" : "ltr" }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
